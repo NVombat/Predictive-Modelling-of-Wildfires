@@ -31,9 +31,9 @@ def predict(request):
 
         data_entry.insert_data(feature_list=feature_list)
 
-        #Prediction ML Function Call
+        # Prediction ML Function Call
 
-        #Return Result
+        # Return Result
 
     return render(request, "prediction.html")
 
