@@ -23,3 +23,8 @@ def predict(request):
 
 def pricing(request):
     return render(request, "pricing.html")
+
+
+def result(request):
+    print("RESULT")
+    # return render(request, "result.html")
