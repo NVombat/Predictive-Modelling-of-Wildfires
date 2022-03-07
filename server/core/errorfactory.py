@@ -1,2 +1,6 @@
 class DataIntegrityErrors(Exception):
     ...
+
+
+class UserErrors(Exception):
+    ...

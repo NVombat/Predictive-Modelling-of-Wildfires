@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+import datetime as d
 
-from . import data_entry
+from . import data_entry, state
 
 
 def home(request):
@@ -23,13 +24,18 @@ def predict(request):
     if request == "POST":
         form_data = request.POST.dict()
 
+        name = form_data.get("Name")
+        email = form_data.get("Email")
         f1 = form_data.get("Feature1")
         f2 = form_data.get("Feature2")
         f3 = form_data.get("Feature3")
 
         feature_list = [f1, f2, f3]
 
-        data_entry.insert_data(feature_list=feature_list)
+        date = d.datetime.now()
+        date = date.strftime("%d/%m/%Y, %H:%M:%S")
+
+        data_entry.insert_data(name, email, date, feature_list=feature_list)
 
         # Prediction ML Function Call
 
