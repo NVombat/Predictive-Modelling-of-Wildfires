@@ -2,6 +2,8 @@ from dotenv import load_dotenv
 import smtplib
 import os
 
+from server.wildfirepred.views import result
+
 load_dotenv()
 
 
@@ -15,7 +17,7 @@ def send_feedback_mail(
     Args:
         Email: User Email ID
         Name: Name Of User
-        Message: User Feedback Message
+        Message: User Result Message
 
     Returns:
         None
@@ -28,12 +30,13 @@ def send_feedback_mail(
     server.login(backemail_add, backemail_pwd)
 
     # User mail subject, body and format of the mail - FROM ADMIN TO USER
-    subject1 = "JTVMusicApp: Query/Feedback Received"
-    body1 = f"Dear {name} \n\nThank you for reaching out to us! \n\nYour Query/Feedback has been received successfully! \n\nPlease wait until we process the information and get back to you. \n\nHope you have a wonderful day! \n\nWarm Regards, \n\nThe Help Team \nJTVMusicApp"
+    subject1 = "Predictive Modelling of Wildfires: Prediction Results"
+    body1 = f"Dear {name} \n\nThank you for using our services! \n\nResult: {message} \n\nHope you have a wonderful day! \n\nWarm Regards, \n\nThe Help Team \nWildfire Prediction Team"
     msg1 = f"Subject: {subject1}\n\n{body1}"
 
     server.sendmail(backemail_add, email, msg1)
     server.quit()
+
 
 if __name__ == "__main__":
     send_feedback_mail()

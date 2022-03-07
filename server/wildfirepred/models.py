@@ -99,11 +99,7 @@ class DataEntry:
                 {"$push": db_data},
             )
         else:
-            rec = {
-                "Name": name,
-                "Email": email,
-                "Data": [pred_data]
-            }
+            rec = {"Name": name, "Email": email, "Data": [pred_data]}
             self.db.insert_one(rec)
 
     def fetch_data(self) -> None:
