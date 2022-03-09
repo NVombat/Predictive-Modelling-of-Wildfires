@@ -40,7 +40,7 @@ class DataEntry:
         )
 
         if self.db.find_one({"Data.data_id": data_id}):
-        # if self.db.find({"Data": {"$in": [data_id]}}):
+            # if self.db.find({"Data": {"$in": [data_id]}}):
             data_id = self.generate_data_id()
         return data_id
 
@@ -71,7 +71,7 @@ class DataEntry:
             bool
         """
         if self.db.find_one({"Data.data_id": data_id}):
-        # if self.db.find({"Data": {"$in": [data_id]}}):
+            # if self.db.find({"Data": {"$in": [data_id]}}):
             return True
 
         raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
@@ -162,7 +162,9 @@ class DataEntry:
                         },
                     )
                 except Exception:
-                    raise ResultUpdationError(f"Unable to Update Data With ID {data_id}")
+                    raise ResultUpdationError(
+                        f"Unable to Update Data With ID {data_id}"
+                    )
             else:
                 raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
         else:
