@@ -76,7 +76,7 @@ class DataEntry:
 
         raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
 
-    def insert_data(self, name: str, email: str, date: str, feature_list: list) -> None:
+    def insert_data(self, name: str, email: str, date: str, feature_list: list) -> str:
         """Inserts data into collection
 
         Args:
@@ -86,10 +86,12 @@ class DataEntry:
             feature_list: List of Features
 
         Returns:
-            None: inserts user data into db
+            str: data_id
         """
+        data_id = self.generate_data_id()
+
         pred_data = {
-            "data_id": self.generate_data_id(),
+            "data_id": data_id,
             "Date": date,
             "Features": feature_list,
         }
@@ -101,9 +103,11 @@ class DataEntry:
                 {"Email": email},
                 {"$push": db_data},
             )
+            return data_id
         else:
             rec = {"Name": name, "Email": email, "Data": [pred_data]}
             self.db.insert_one(rec)
+            return data_id
 
     def fetch_feature_data(self, d=False, e=False, **kwargs) -> list:
         """Fetches features from collection
