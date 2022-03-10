@@ -2,8 +2,6 @@ from dotenv import load_dotenv
 import smtplib
 import os
 
-from server.wildfirepred.views import result
-
 load_dotenv()
 
 
