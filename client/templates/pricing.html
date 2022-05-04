@@ -18,7 +18,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="http://127.0.0.1:8000/">
+            <a class="navbar-brand" href="./">
             <img src="/static/images/logo-new-footer.png" alt="logo" />
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                     <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+                     <a class="nav-link" href="./">Home</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="./about">About</a>
@@ -74,7 +74,7 @@
             </div>
         </div>
     </nav>
-	
+
 	<!-- full Title -->
 	<div class="full-title">
 		<div class="container">
@@ -89,7 +89,7 @@
 		<div class="breadcrumb-main">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
-					<a href="http://127.0.0.1:8000/">Home</a>
+					<a href="./">Home</a>
 				</li>
 				<li class="breadcrumb-item active">Explore Us</li>
 				<li class="breadcrumb-item active">Pricing</li>
@@ -99,7 +99,25 @@
 		<div class="pricing-box">
 		<!-- Content Row -->
 			<div class="row">
-				<div class="col-lg-4 mb-4">
+				<div class="col-lg-3 mb-3">
+					<div class="card h-100">
+						<h3 class="card-header">Plans</h3>
+						<div class="card-body">
+							<div class="display-4">Price</div>
+							<div class="font-italic">per month</div>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item text-center">Prediction</li>
+							<li class="list-group-item text-center">Awareness Sessions</li>
+							<li class="list-group-item text-center">In-person monitoring</li>
+							<li class="list-group-item text-center">Alert System</li>
+							<li class="list-group-item text-center">
+							<a href="#" class="btn btn-primary">Buy our Plans</a>
+						  </li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 mb-3">
 					<div class="card h-100">
 						<h3 class="card-header">Basic</h3>
 						<div class="card-body">
@@ -107,16 +125,17 @@
 							<div class="font-italic">per month</div>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-							<li class="list-group-item">
-							<a href="#" class="btn btn-primary">Buy</a>
+							<li class="list-group-item text-center"><i class="fa fa-check fa-lg"></i></li>
+							<li class="list-group-item text-center">1</li>
+							<li class="list-group-item text-center">1</li>
+							<li class="list-group-item text-center"><i class="fa fa-times fa-lg"></i></li>
+							<li class="list-group-item text-center">
+							<a href="./error" class="btn btn-primary">Buy</a>
 						  </li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-4 mb-4">
+				<div class="col-lg-3 mb-3">
 					<div class="card card-outline-primary h-100">
 						<h3 class="card-header text-black">
 							Plus
@@ -127,16 +146,17 @@
 							<div class="font-italic">per month</div>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-							<li class="list-group-item">
-							<a href="#" class="btn btn-primary">Buy</a>
+							<li class="list-group-item text-center"><i class="fa fa-check fa-lg"></i></li>
+							<li class="list-group-item text-center">3</li>
+							<li class="list-group-item text-center">3</li>
+							<li class="list-group-item text-center"><i class="fa fa-times fa-lg"></i></li>
+							<li class="list-group-item text-center">
+							<a href="./error" class="btn btn-primary">Buy</a>
 						  </li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-4 mb-4">
+				<div class="col-lg-3 mb-3">
 					<div class="card h-100">
 						<h3 class="card-header">Ultra</h3>
 						<div class="card-body">
@@ -144,11 +164,12 @@
 							<div class="font-italic">per month</div>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-							<li class="list-group-item">
-							<a href="#" class="btn btn-primary">Buy</a>
+							<li class="list-group-item text-center"><i class="fa fa-check fa-lg"></i></li>
+							<li class="list-group-item text-center">12</li>
+							<li class="list-group-item text-center">12</li>
+							<li class="list-group-item text-center"><i class="fa fa-check fa-lg"></i></li>
+							<li class="list-group-item text-center">
+							<a href="./error" class="btn btn-primary">Buy</a>
 						  </li>
 						</ul>
 					</div>
@@ -241,10 +262,10 @@
 	</div>
 	<div class="container">
 		<div class="footer-logo">
-			<a href="#"><img src="/static/images/logo-new-footer.png" alt="" /></a>
+			<a href="./"><img src="/static/images/logo-new-footer.png" alt="" /></a>
 		</div>
 		<!--foote_bottom_ul_amrc ends here-->
-		<p class="copyright text-center">All Rights Reserved. &copy; 2022 <a href="http://127.0.0.1:8000/">Forest Care</a> Design By :
+		<p class="copyright text-center">All Rights Reserved. &copy; 2022 <a href="./">Forest Care</a> Design By :
 			<a href="./contact_us">B14</a>
 		</p>
 		<ul class="social_footer_ul">
