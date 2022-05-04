@@ -19,7 +19,7 @@
     <!-- Navigation -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="http://127.0.0.1:8000/">
+            <a class="navbar-brand" href="./">
             <img src="/static/images/logo-new-footer.png" alt="logo" />
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                     <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+                     <a class="nav-link" href="./">Home</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="./about">About</a>
@@ -90,90 +90,258 @@
 		<div class="breadcrumb-main">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
-					<a href="http://127.0.0.1:8000/">Home</a>
+					<a href="./">Home</a>
 				</li>
 				<li class="breadcrumb-item active">Prediction</li>
 			</ol>
 		</div>
+		<div class="row justify-content-center my-5" id="predictionResult">
+			<div class="text-center">
+				<svg class="progress green noselect" data-progress="65" x="0px" y="0px" viewBox="0 0 80 80">
+					<path class="track" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+					<path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+					<text class="value" x="50%" y="55%">0%</text>
+				</svg>
 
-		<!-- Image Header -->
-		<img class="img-fluid rounded mb-4" src="/static/images/services-big.jpg" alt="" />
+				<span>
+					The chances of wildfire are <span id="predictionPercentage">0%</span>
+				</span>
 
-		<!-- Services Section -->
-		<div class="services-bar">
-            <h1 class="my-4">Our Best Services </h1>
-            <!-- Services Section -->
-            <div class="row">
-               <div class="col-lg-4 mb-4">
-                  <div class="card h-100">
-                     <h4 class="card-header">Garden Fence</h4>
-                     <div class="card-img">
-                        <img class="img-fluid" src="/static/images/services-img-01.jpg" alt="" />
-                     </div>
-                     <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                     </div>
-                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Learn More</a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4 mb-4">
-                  <div class="card h-100">
-                     <h4 class="card-header">Garden Watering</h4>
-                     <div class="card-img">
-                        <img class="img-fluid" src="/static/images/services-img-02.jpg" alt="" />
-                     </div>
-                     <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                     </div>
-                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Learn More</a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4 mb-4">
-                  <div class="card h-100">
-                     <h4 class="card-header">Garden Supplies</h4>
-                     <div class="card-img">
-                        <img class="img-fluid" src="/static/images/services-img-03.jpg" alt="" />
-                     </div>
-                     <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                     </div>
-                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Learn More</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- /.row -->
-        </div>
-		<!-- Our Customers -->
-		<div class="customers-box"> 
-			<h2>Our Customers</h2>
-			<div class="row">
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="/static/images/logo_01.png" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="/static/images/logo_02.png" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="/static/images/logo_03.png" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="/static/images/logo_04.png" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="/static/images/logo_05.png" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="/static/images/logo_06.png" alt="" />
+				<div class="mt-2">
+					<button class="btn btn-primary" id="predictAgain">
+						Predict Again
+					</button>
 				</div>
 			</div>
-			<!-- /.row -->
 		</div>
+		<div class="row" id="predictionSection">
+			<div class="col-lg-12 mb-4 contact-left">
+			  <h3>Predict the chances of wildfire here!</h3>
+			  <form id="predictionForm" novalidate>
+				<div class="d-flex gap-2 flex-lg-row flex-column">
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							  <label>Latitude:</label>
+							  <input type="number" placeholder="eg: -123.6789 or 123.4567 (upto 4 decimals)" class="form-control" id="lat" required data-validation-required-message="Please enter the value">
+							  <p class="help-block"></p>
+							</div>
+						  </div>
+					</div>
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							  <label>Longitude:</label>
+							  <input type="number" placeholder="eg: -123.6789 or 123.4567 (upto 4 decimals)" class="form-control" id="long" required data-validation-required-message="Please enter the value">
+							  <p class="help-block"></p>
+							</div>
+						  </div>
+					</div>
+				</div>
+				<div class="d-flex gap-2 flex-lg-row flex-column">
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							  <label>Brightness:</label>
+							  <input type="number" placeholder="eg: 123.1 (upto 1 decimal)" class="form-control" id="bright" required data-validation-required-message="Please enter the value">
+							  <p class="help-block"></p>
+							</div>
+						  </div>
+					</div>
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							  <label>Fire Radiative Power (FRP):</label>
+							  <input type="number" placeholder="eg: 478.1 (upto 1 decimal)" class="form-control" id="frp" required data-validation-required-message="Please enter the value">
+							  <p class="help-block"></p>
+							</div>
+						  </div>
+					</div>
+				</div>
+				<div class="d-flex gap-2 flex-lg-row flex-column">
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Time:</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="time">
+									<option selected>Please Select a Option</option>
+									<option value="1">Day</option>
+									<option value="0">Night</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Satelite:</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="sat">
+									<option selected>Please Select a Option</option>
+									<option value="1">Terra</option>
+									<option value="0">Aqua</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex gap-2 flex-lg-row flex-column">
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Forest Reserve : (Is the area under government supervision)</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="forest">
+									<option selected>Please Select a Option</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Industrial Area : (Is the area surrounded by industries)</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="ind">
+									<option selected>Please Select a Option</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex gap-2 flex-lg-row flex-column">
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Forest Area: (in sq km)</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="area">
+									<option selected>Please Select a Option</option>
+									<option value="1">0-100</option>
+									<option value="2">100-200</option>
+									<option value="3">200-300</option>
+									<option value="4">300-400</option>
+									<option value="5">400-500</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex gap-2 flex-lg-row flex-column">
+					<div class="col-lg-4 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Day:</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="day">
+									<option selected>Please Select a Day</option>
+									<option value="1">01</option>
+									<option value="2">02</option>
+									<option value="3">03</option>
+									<option value="4">04</option>
+									<option value="5">05</option>
+									<option value="6">06</option>
+									<option value="7">07</option>
+									<option value="8">08</option>
+									<option value="9">09</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Month:</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="month">
+									<option selected>Please Select a Month</option>
+									<option value="1">January</option>
+									<option value="2">February</option>
+									<option value="3">March</option>
+									<option value="4">April</option>
+									<option value="5">May</option>
+									<option value="6">June</option>
+									<option value="7">July</option>
+									<option value="8">August</option>
+									<option value="9">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							<label>Year:</label>
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="year">
+									<option selected>Please Select a Year</option>
+									<option value="2000">2000</option>
+									<option value="2001">2001</option>
+									<option value="2002">2002</option>
+									<option value="2003">2003</option>
+									<option value="2004">2004</option>
+									<option value="2005">2005</option>
+									<option value="2006">2006</option>
+									<option value="2007">2007</option>
+									<option value="2008">2008</option>
+									<option value="2009">2009</option>
+									<option value="2010">2010</option>
+									<option value="2011">2011</option>
+									<option value="2012">2012</option>
+									<option value="2013">2013</option>
+									<option value="2014">2014</option>
+									<option value="2015">2015</option>
+									<option value="2016">2016</option>
+									<option value="2017">2017</option>
+									<option value="2018">2018</option>
+									<option value="2019">2019</option>
+									<option value="2020">2020</option>
+									<option value="2021">2021</option>
+									<option value="2022">2022</option>
+									<option value="2023">2023</option>
+									<option value="2024">2024</option>
+									<option value="2025">2025</option>
+									<option value="2026">2026</option>
+									<option value="2027">2027</option>
+									<option value="2028">2028</option>
+									<option value="2029">2029</option>
+									<option value="2030">2030</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="success"></div>
+				<!-- For success/fail messages -->
+					<button type="submit" class="btn btn-primary" id="submitBtn">
+						Submit
+					</button>
+			  </form>
+			</div>
+		  </div>
+
 
     </div>
     <!-- /.container -->
@@ -181,89 +349,15 @@
    <!--footer starts from here-->
    <footer class="footer">
 	<div class="container bottom_border">
-		<!--<div class="row">
-		   <div class="col-lg-3 col-md-6 col-sm-6 col">
-				<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
-				headin5_amrc
-				<p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-				<p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
-				<p><i class="fa fa-phone"></i> +91-9999878398 </p>
-				<p><i class="fa fa fa-envelope"></i> info@example.com </p>
-		   </div>
-		   <div class="col-lg-3 col-md-6 col-sm-6 col">
-				<h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
-				headin5_amrc ends here
-				<ul class="footer_ul2_amrc">
-					<li>
-						<a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
-						<p>Lorem Ipsum is simply dummy printing...<a href="#">https://www.lipsum.com/</a></p>
-					</li>
-					<li>
-						<a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
-						<p>Lorem Ipsum is simply dummy printing...<a href="#">https://www.lipsum.com/</a></p>
-					</li>
-					<li>
-						<a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
-						<p>Lorem Ipsum is simply dummy printing...<a href="#">https://www.lipsum.com/</a></p>
-					</li>
-				</ul>
-				footer_ul2_amrc ends here
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6">
-				<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
-				headin5_amrc
-				<ul class="footer_ul_amrc">
-					<li><a href="#">Default Version</a></li>
-					<li><a href="#">Boxed Version</a></li>
-					<li><a href="#">Our Team </a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Our Services</a></li>
-					<li><a href="#">Get In Touch</a></li>
-				</ul>
-				footer_ul_amrc ends here
-			</div>
-			<div class="col-lg-3 col-md-6 col-sm-6 ">
-				<h5 class="headin5_amrc col_white_amrc pt2">Recent posts</h5>
-				headin5_amrc
-				<ul class="footer_ul_amrc">
-					<li class="media">
-						<div class="media-left">
-							<img class="img-fluid" src="images/post-img-01.jpg" alt="" />
-						</div>
-						<div class="media-body">
-							<p>How to find best dog food?</p>
-							<span>22 Sep 2018</span>
-						</div>
-					</li>
-					<li class="media">
-						<div class="media-left">
-							<img class="img-fluid" src="images/post-img-02.jpg" alt="" />
-						</div>
-						<div class="media-body">
-							<p>How to find best dog food?</p>
-							<span>34 Sep 2018</span>
-						</div>
-					</li>
-					<li class="media">
-						<div class="media-left">
-							<img class="img-fluid" src="images/post-img-03.jpg" alt="" />
-						</div>
-						<div class="media-body">
-							<p>How to find best dog food?</p>
-							<span>30 Sep 2018</span>
-						</div>
-					</li>
-				</ul>
-				footer_ul_amrc ends here-->
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="footer-logo">
-			<a href="#"><img src="/static/images/logo-new-footer.png" alt="" /></a>
+			<a href="./"><img src="/static/images/logo-new-footer.png" alt="" /></a>
 		</div>
 		<!--foote_bottom_ul_amrc ends here-->
-		<p class="copyright text-center">All Rights Reserved. &copy; 2022 <a href="http://127.0.0.1:8000/">Forest Care</a> Design By :
+		<p class="copyright text-center">All Rights Reserved. &copy; 2022 <a href="./">Forest Care</a> Design By :
 			<a href="./contact_us">B14</a>
 		</p>
 		<ul class="social_footer_ul">
@@ -279,5 +373,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="/static/vendor/jquery/jquery.min.js"></script>
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/static/js/prediction.js"></script>
 </body>
 </html>
