@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 import datetime as d
+import joblib
 
 from . import data_entry, state
 
@@ -20,30 +21,41 @@ def faq(request):
     return render(request, "faq.html")
 
 
+def errorpage(request):
+    return render(request, "error.html")
+
+
 def predict(request):
     if request == "POST":
+        model = joblib.load("../ml/models/model_jlib")
+
         form_data = request.POST.dict()
 
         name = form_data.get("Name")
         email = form_data.get("Email")
-        f1 = form_data.get("Feature1")
-        f2 = form_data.get("Feature2")
-        f3 = form_data.get("Feature3")
-        f4 = form_data.get("Feature4")
-        f5 = form_data.get("Feature5")
-        f6 = form_data.get("Feature6")
-        f7 = form_data.get("Feature7")
+        f1 = float(form_data.get("lat"))
+        f2 = float(form_data.get("long"))
+        f3 = float(form_data.get("brightness"))
+        f4 = float(form_data.get("frp"))
+        f5 = int(form_data.get("time"))
+        f6 = int(form_data.get("sat"))
+        f7 = int(form_data.get("for_reserve"))
+        f8 = int(form_data.get("ind_area"))
+        f9 = int(form_data.get("for_area"))
+        f10 = int(form_data.get("day"))
+        f11 = int(form_data.get("month"))
+        f12 = int(form_data.get("year"))
 
-        feature_list = [f1, f2, f3, f4, f5, f6, f7]
+        feature_list = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12]
 
         date = d.datetime.now()
         date = date.strftime("%d/%m/%Y, %H:%M:%S")
 
         data_id = data_entry.insert_data(name, email, date, feature_list=feature_list)
 
-        # Prediction ML Function Call To Calculate res
+        predict = model.predict([feature_list])
 
-        data_entry.add_prediction_result(email, data_id, res=90)
+        data_entry.add_prediction_result(email, data_id, res=float(predict))
 
         # Return Result
 

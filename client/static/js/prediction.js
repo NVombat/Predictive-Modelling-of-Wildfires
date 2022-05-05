@@ -20,14 +20,14 @@ const year =$("#year")[0];
 
 $(predictionResult).hide();
 
-// const API_ENDPOINT = "http://127.0.0.1:5000/predict";
+// const API_ENDPOINT = "http://127.0.0.1:8000/predict";
 
 async function predict(body) {
     // const config = {
     //     // method:"POST",
     //     body:JSON.stringify(body)
     // }
-    const API_ENDPOINT = `http://127.0.0.1:5000/predict?latitude=${lat.value}&longitude=${long.value}&brightness=${bright.value}&satellite=${sat.value}&frp=${frp.value}&daynight=${time.value}&type_2=${forest.value}&type_3=${ind.value}&scan_binned=${area.value}&year=${year.value}&month=${month.value}&day=${day.value}`
+    const API_ENDPOINT = `http://127.0.0.1:8000/predict?latitude=${lat.value}&longitude=${long.value}&brightness=${bright.value}&satellite=${sat.value}&frp=${frp.value}&daynight=${time.value}&type_2=${forest.value}&type_3=${ind.value}&scan_binned=${area.value}&year=${year.value}&month=${month.value}&day=${day.value}`
     const apiResponse = await fetch(API_ENDPOINT);
     const response = await apiResponse.json();
     return response;
@@ -51,7 +51,7 @@ async function submitHandler(e) {
     }
     // console.log(lat,lat.value)
     // const response = await predict(body);
-    const API_ENDPOINT = `http://127.0.0.1:5000/predict?latitude=${lat.value}&longitude=${long.value}&brightness=${bright.value}&satellite=${sat.value}&frp=${frp.value}&daynight=${time.value}&type_2=${forest.value}&type_3=${ind.value}&scan_binned=${area.value}&year=${year.value}&month=${month.value}&day=${day.value}`
+    const API_ENDPOINT = `http://127.0.0.1:8000/predict?latitude=${lat.value}&longitude=${long.value}&brightness=${bright.value}&satellite=${sat.value}&frp=${frp.value}&daynight=${time.value}&type_2=${forest.value}&type_3=${ind.value}&scan_binned=${area.value}&year=${year.value}&month=${month.value}&day=${day.value}`
     const apiResponse = await fetch(API_ENDPOINT);
     let response = await apiResponse.json();
     $(predictionSection).hide();

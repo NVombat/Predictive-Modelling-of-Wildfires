@@ -10,4 +10,5 @@ urlpatterns = [
     path("predict", views.predict, name="Prediction"),
     path("pricing", views.pricing, name="Pricing"),
     path("predresult", views.result, name="Result"),
+    path("error", views.errorpage, name="Error"),
 ]
