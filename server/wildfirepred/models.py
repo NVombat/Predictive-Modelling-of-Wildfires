@@ -228,3 +228,15 @@ class DataEntry:
         raise InvalidArgumentError(
             f"User with Email {email} And Data with ID {data} DOES NOT Exist"
         )
+
+    def dataset_update(feature_list: list, name="fire_archive.csv") -> None:
+        """Updates dataset with values input by user
+
+        Args:
+            feature_list: List of Features
+            name: Name of Dataset
+
+        Returns:
+            None
+        """
+        # TODO

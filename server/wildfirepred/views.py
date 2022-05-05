@@ -25,6 +25,10 @@ def errorpage(request):
     return render(request, "error.html")
 
 
+def pricing(request):
+    return render(request, "pricing.html")
+
+
 def predict(request):
     if request == "POST":
         model = joblib.load("../ml/models/model_jlib")
@@ -57,13 +61,11 @@ def predict(request):
 
         data_entry.add_prediction_result(email, data_id, res=float(predict))
 
+        # Update Dataset
+
         # Return Result
 
     return render(request, "prediction.html")
-
-
-def pricing(request):
-    return render(request, "pricing.html")
 
 
 def result(request):
