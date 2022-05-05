@@ -27,7 +27,7 @@ def errorpage(request):
 
 def predict(request):
     if request == "POST":
-        model = joblib.load('../ml/models/model_jlib')
+        model = joblib.load("../ml/models/model_jlib")
 
         form_data = request.POST.dict()
 
@@ -46,7 +46,6 @@ def predict(request):
         f11 = int(form_data.get("month"))
         f12 = int(form_data.get("year"))
 
-
         feature_list = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12]
 
         date = d.datetime.now()
@@ -56,7 +55,7 @@ def predict(request):
 
         predict = model.predict([feature_list])
 
-        data_entry.add_prediction_result(email, data_id, res = float(predict))
+        data_entry.add_prediction_result(email, data_id, res=float(predict))
 
         # Return Result
 
