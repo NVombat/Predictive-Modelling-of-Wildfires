@@ -179,7 +179,7 @@ class DataEntry:
                     "Kwargs Has Invalid Argument - Missing Argument 'Email'"
                 )
 
-    def add_prediction_result(self, email: str, data_id: str, res: int) -> None:
+    def add_prediction_result(self, email: str, data_id: str, res: float) -> None:
         """Inserts prediction result into collection
 
         Args:
