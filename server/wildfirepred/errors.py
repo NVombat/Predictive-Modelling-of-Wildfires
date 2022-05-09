@@ -1,4 +1,9 @@
-from core.errorfactory import DataIntegrityErrors, DatabaseErrors, UserErrors, FileErrors
+from core.errorfactory import (
+    DataIntegrityErrors,
+    DatabaseErrors,
+    UserErrors,
+    FileErrors,
+)
 
 
 class InvalidArgumentError(DataIntegrityErrors):

@@ -42,7 +42,7 @@ class DataEntry:
         )
 
         if self.db.find_one({"Data.data_id": data_id}):
-        # if self.db.find({"Data": {"$in": [data_id]}}):
+            # if self.db.find({"Data": {"$in": [data_id]}}):
             data_id = self.generate_data_id()
         return data_id
 
@@ -73,7 +73,7 @@ class DataEntry:
             bool
         """
         if self.db.find_one({"Data.data_id": data_id}):
-        # if self.db.find({"Data": {"$in": [data_id]}}):
+            # if self.db.find({"Data": {"$in": [data_id]}}):
             return True
 
         raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
@@ -129,7 +129,7 @@ class DataEntry:
 
                 # Get Data with ID = data_id
                 if value := self.db.find_one({"Data.data_id": data_id}):
-                # if value := self.db.find({"Data": {"$in": [data_id]}}):
+                    # if value := self.db.find({"Data": {"$in": [data_id]}}):
                     data = value["Data"]
                     return data["Features"]
 
@@ -242,7 +242,7 @@ class DataEntry:
             bool
         """
         try:
-            with open(file_name, 'a', newline='') as f_object:
+            with open(file_name, "a", newline="") as f_object:
                 writer_object = writer(f_object)
                 writer_object.writerow(feature_list)
                 f_object.close()

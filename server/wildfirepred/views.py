@@ -70,7 +70,9 @@ def predict(request):
         date = date.strftime("%d/%m/%Y, %H:%M:%S")
 
         try:
-            data_id = data_entry.insert_data(name, email, date, feature_list=feature_list)
+            data_id = data_entry.insert_data(
+                name, email, date, feature_list=feature_list
+            )
 
             predict = model.predict([feature_list])
             float_res = round(float(predict[0]), 2)
