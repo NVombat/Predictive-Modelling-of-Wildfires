@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from csv import writer
 import pymongo
 import random
 import string
@@ -10,6 +11,7 @@ from .errors import (
     InvalidArgumentError,
     ResultUpdationError,
     InvalidDataIDError,
+    FileInsertionError,
 )
 
 load_dotenv()
@@ -40,7 +42,7 @@ class DataEntry:
         )
 
         if self.db.find_one({"Data.data_id": data_id}):
-            # if self.db.find({"Data": {"$in": [data_id]}}):
+        # if self.db.find({"Data": {"$in": [data_id]}}):
             data_id = self.generate_data_id()
         return data_id
 
@@ -71,7 +73,7 @@ class DataEntry:
             bool
         """
         if self.db.find_one({"Data.data_id": data_id}):
-            # if self.db.find({"Data": {"$in": [data_id]}}):
+        # if self.db.find({"Data": {"$in": [data_id]}}):
             return True
 
         raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
@@ -127,7 +129,7 @@ class DataEntry:
 
                 # Get Data with ID = data_id
                 if value := self.db.find_one({"Data.data_id": data_id}):
-                    # if value := self.db.find({"Data": {"$in": [data_id]}}):
+                # if value := self.db.find({"Data": {"$in": [data_id]}}):
                     data = value["Data"]
                     return data["Features"]
 
@@ -229,7 +231,7 @@ class DataEntry:
             f"User with Email {email} And Data with ID {data} DOES NOT Exist"
         )
 
-    def dataset_update(feature_list: list, name="fire_archive_final.csv") -> None:
+    def update_dataset(feature_list: list, file_name="fire_archive_final.csv") -> bool:
         """Updates dataset with values input by user
 
         Args:
@@ -237,6 +239,15 @@ class DataEntry:
             name: Name of Dataset
 
         Returns:
-            None
+            bool
         """
-        # TODO
+        try:
+            with open(file_name, 'a', newline='') as f_object:
+                writer_object = writer(f_object)
+                writer_object.writerow(feature_list)
+                f_object.close()
+
+            return True
+
+        except:
+            raise FileInsertionError("Unable To Update Dataset - An Error Occured")
