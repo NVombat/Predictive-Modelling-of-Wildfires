@@ -95,35 +95,37 @@
 				<li class="breadcrumb-item active">Prediction</li>
 			</ol>
 		</div>
-		<div class="row justify-content-center my-5" id="predictionResult">
-			<div class="text-center">
-				<svg class="progress green noselect" data-progress="65" x="0px" y="0px" viewBox="0 0 80 80">
-					<path class="track" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
-					<path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
-					<text class="value" x="50%" y="55%">0%</text>
-				</svg>
-
-				<span>
-					The chances of wildfire are <span id="predictionPercentage">0%</span>
-				</span>
-
-				<div class="mt-2">
-					<button class="btn btn-primary" id="predictAgain">
-						Predict Again
-					</button>
-				</div>
-			</div>
-		</div>
 		<div class="row" id="predictionSection">
 			<div class="col-lg-12 mb-4 contact-left">
 			  <h3>Predict the chances of wildfire here!</h3>
-			  <form id="predictionForm" novalidate>
+			  <form id="predictionForm" method="post" novalidate>
+				{% csrf_token %}
 				<div class="d-flex gap-2 flex-lg-row flex-column">
 					<div class="col-lg-6 col-12 p-0">
 						<div class="control-group form-group">
 							<div class="controls">
+							  <label>Name:</label>
+							  <input type="text" placeholder="eg: John" class="form-control" id="_name" name="_name" required data-validation-required-message="Please enter the value">
+							  <p class="help-block"></p>
+							</div>
+						  </div>
+					</div>
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
+							  <label>Email:</label>
+							  <input type="email" placeholder="eg: abc@example.com" class="form-control" id="email" name="email" required data-validation-required-message="Please enter the value">
+							  <p class="help-block"></p>
+							</div>
+						  </div>
+					</div>
+				</div>
+				<div>
+					<div class="col-lg-6 col-12 p-0">
+						<div class="control-group form-group">
+							<div class="controls">
 							  <label>Latitude:</label>
-							  <input type="number" placeholder="eg: -123.6789 or 123.4567 (upto 4 decimals)" class="form-control" id="lat" required data-validation-required-message="Please enter the value">
+							  <input type="number" placeholder="eg: -123.6789 or 123.4567 (upto 4 decimals)" class="form-control" id="lat" name="lat" required data-validation-required-message="Please enter the value">
 							  <p class="help-block"></p>
 							</div>
 						  </div>
@@ -132,7 +134,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							  <label>Longitude:</label>
-							  <input type="number" placeholder="eg: -123.6789 or 123.4567 (upto 4 decimals)" class="form-control" id="long" required data-validation-required-message="Please enter the value">
+							  <input type="number" placeholder="eg: -123.6789 or 123.4567 (upto 4 decimals)" class="form-control" id="long" name="long" required data-validation-required-message="Please enter the value">
 							  <p class="help-block"></p>
 							</div>
 						  </div>
@@ -143,7 +145,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							  <label>Brightness:</label>
-							  <input type="number" placeholder="eg: 123.1 (upto 1 decimal)" class="form-control" id="bright" required data-validation-required-message="Please enter the value">
+							  <input type="number" placeholder="eg: 123.1 (upto 1 decimal)" class="form-control" id="bright" name="bright" required data-validation-required-message="Please enter the value">
 							  <p class="help-block"></p>
 							</div>
 						  </div>
@@ -152,7 +154,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							  <label>Fire Radiative Power (FRP):</label>
-							  <input type="number" placeholder="eg: 478.1 (upto 1 decimal)" class="form-control" id="frp" required data-validation-required-message="Please enter the value">
+							  <input type="number" placeholder="eg: 478.1 (upto 1 decimal)" class="form-control" id="frp" name="frp" required data-validation-required-message="Please enter the value">
 							  <p class="help-block"></p>
 							</div>
 						  </div>
@@ -163,7 +165,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Time:</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="time">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="time" name="time">
 									<option selected>Please Select a Option</option>
 									<option value="1">Day</option>
 									<option value="0">Night</option>
@@ -175,7 +177,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Satelite:</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="sat">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="sat" name="sat">
 									<option selected>Please Select a Option</option>
 									<option value="1">Terra</option>
 									<option value="0">Aqua</option>
@@ -189,7 +191,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Forest Reserve : (Is the area under government supervision)</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="forest">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="forest" name="forest">
 									<option selected>Please Select a Option</option>
 									<option value="1">Yes</option>
 									<option value="0">No</option>
@@ -201,7 +203,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Industrial Area : (Is the area surrounded by industries)</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="ind">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="ind" name="ind">
 									<option selected>Please Select a Option</option>
 									<option value="1">Yes</option>
 									<option value="0">No</option>
@@ -215,7 +217,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Forest Area: (in sq km)</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="area">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="area" name="area">
 									<option selected>Please Select a Option</option>
 									<option value="1">0-100</option>
 									<option value="2">100-200</option>
@@ -232,7 +234,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Day:</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="day">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="day" name="day">
 									<option selected>Please Select a Day</option>
 									<option value="1">01</option>
 									<option value="2">02</option>
@@ -273,7 +275,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Month:</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="month">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="month" name="month">
 									<option selected>Please Select a Month</option>
 									<option value="1">January</option>
 									<option value="2">February</option>
@@ -295,7 +297,7 @@
 						<div class="control-group form-group">
 							<div class="controls">
 							<label>Year:</label>
-								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="year">
+								<select class="form-select form-select-lg mb-3" aria-label="Default select example" id="year" name="year">
 									<option selected>Please Select a Year</option>
 									<option value="2000">2000</option>
 									<option value="2001">2001</option>
@@ -333,12 +335,32 @@
 						</div>
 					</div>
 				</div>
+
 				<div id="success"></div>
 				<!-- For success/fail messages -->
 					<button type="submit" class="btn btn-primary" id="submitBtn">
 						Submit
 					</button>
 			  </form>
+			</div>
+			<div class="row justify-content-center my-5" id="predictionResult">
+				<div class="text-center">
+					<svg class="progress green noselect" data-progress="65" x="0px" y="0px" viewBox="0 0 80 80">
+						<path class="track" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+						<path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+						<text class="value" x="50%" y="55%">0%</text>
+					</svg>
+
+					<span>
+						The chances of wildfire are <span id="predictionPercentage"> {{result}} %</span>
+					</span>
+
+					<div class="mt-2">
+						<button class="btn btn-primary" id="predictAgain">
+							Predict Again
+						</button>
+					</div>
+				</div>
 			</div>
 		  </div>
 
@@ -374,6 +396,6 @@
 <script src="/static/vendor/jquery/jquery.min.js"></script>
 <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script src="/static/js/prediction.js"></script>
+<!-- <script src="/static/js/prediction.js"></script> -->
 </body>
 </html>
