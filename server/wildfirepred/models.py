@@ -41,8 +41,7 @@ class DataEntry:
             for _ in range(16)
         )
 
-        if self.db.find({"Data.data_id": data_id}):
-            # if self.db.find({"Data": {"$in": [data_id]}}):
+        if self.db.find_one({"Data.data_id": data_id}):
             data_id = self.generate_data_id()
         return data_id
 
@@ -72,8 +71,7 @@ class DataEntry:
         Returns:
             bool
         """
-        if self.db.find({"Data.data_id": data_id}):
-            # if self.db.find({"Data": {"$in": [data_id]}}):
+        if self.db.find_one({"Data.data_id": data_id}):
             return True
 
         raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
@@ -232,7 +230,9 @@ class DataEntry:
             f"User with Email {email} And Data with ID {data} DOES NOT Exist"
         )
 
-    def update_dataset(feature_list: list, file_name="../../ml/datasets/fire_archive_final.csv") -> bool:
+    def update_dataset(
+        feature_list: list, file_name="../../ml/datasets/fire_archive_final.csv"
+    ) -> bool:
         """Updates dataset with values input by user
 
         Args:
