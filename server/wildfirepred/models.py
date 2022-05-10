@@ -42,7 +42,6 @@ class DataEntry:
         )
 
         if self.db.find_one({"Data.data_id": data_id}):
-            # if self.db.find({"Data": {"$in": [data_id]}}):
             data_id = self.generate_data_id()
         return data_id
 
@@ -73,7 +72,6 @@ class DataEntry:
             bool
         """
         if self.db.find_one({"Data.data_id": data_id}):
-            # if self.db.find({"Data": {"$in": [data_id]}}):
             return True
 
         raise InvalidDataIDError(f"Data With ID {data_id} NOT Found")
@@ -129,9 +127,9 @@ class DataEntry:
 
                 # Get Data with ID = data_id
                 if value := self.db.find_one({"Data.data_id": data_id}):
-                    # if value := self.db.find({"Data": {"$in": [data_id]}}):
                     data = value["Data"]
-                    return data["Features"]
+                    features = data[0]["Features"]
+                    return features
 
                 raise InvalidDataIDError(f"Data with ID {data} DOES NOT Exist")
 
@@ -150,7 +148,7 @@ class DataEntry:
                     feature_list = []
                     data = value["Data"]
                     for element in data:
-                        feature = data["Features"]
+                        feature = element["Features"]
                         feature_list.append(feature)
 
                     return feature_list
@@ -168,9 +166,10 @@ class DataEntry:
                 email = kwargs["Email"]
                 print(email, data_id)
 
-                if value := self.db.find({"Email": email, "Data": {"$in": [data_id]}}):
+                if value := self.db.find_one({"Email": email, "Data.data_id": data_id}):
                     data = value["Data"]
-                    return data["Features"]
+                    features = data[0]["Features"]
+                    return features
 
                 raise InvalidArgumentError(
                     f"User with Email {email} And Data with ID {data} DOES NOT Exist"
@@ -199,7 +198,7 @@ class DataEntry:
                         {"Email": email, "Data.data_id": data_id},
                         {
                             "$set": {
-                                "Data.Result": res,
+                                "Data.$.Result": res,
                             }
                         },
                     )
@@ -222,16 +221,18 @@ class DataEntry:
         Returns:
             int: prediction result
         """
-        if value := self.db.find_one({"Email": email, "Data": {"$in": [data_id]}}):
+        if value := self.db.find_one({"Email": email, "Data.data_id": data_id}):
             data = value["Data"]
-            res = data["Result"]
-
+            res = data[0]["Result"]
             return res
+
         raise InvalidArgumentError(
             f"User with Email {email} And Data with ID {data} DOES NOT Exist"
         )
 
-    def update_dataset(feature_list: list, file_name="fire_archive_final.csv") -> bool:
+    def update_dataset(
+        feature_list: list, file_name="../../ml/datasets/fire_archive_final.csv"
+    ) -> bool:
         """Updates dataset with values input by user
 
         Args:
