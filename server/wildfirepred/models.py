@@ -231,13 +231,15 @@ class DataEntry:
         )
 
     def update_dataset(
-        feature_list: list, file_name="../../ml/datasets/fire_archive_final.csv"
+        self,
+        feature_list: list,
+        file_name="/home/nvombat/Desktop/Predictive-Modelling-of-Wildfires/ml/datasets/fire_archive_final.csv",
     ) -> bool:
         """Updates dataset with values input by user
 
         Args:
             feature_list: List of Features
-            name: Name of Dataset
+            file_name: Name of Dataset (Path)
 
         Returns:
             bool

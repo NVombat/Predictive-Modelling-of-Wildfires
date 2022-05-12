@@ -63,7 +63,7 @@ def predict(request):
         except Exception:
             print("Unable To Fetch Form Data")
 
-        feature_list = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12]
+        feature_list = [f1, f2, f3, f6, f4, f5, f7, f8, f9, f12, f11, f10]
 
         date = d.datetime.now()
         date = date.strftime("%d/%m/%Y, %H:%M:%S")
@@ -79,7 +79,7 @@ def predict(request):
 
             data_entry.add_prediction_result(email, data_id, res=float_res)
 
-            # data_entry.update_dataset(feature_list)
+            data_entry.update_dataset(feature_list)
 
         except UserDoesNotExistError as udne:
             print("Error:", str(udne))
