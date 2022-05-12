@@ -44,6 +44,12 @@ $ git clone https://github.com/NVombat/Predictive-Modelling-of-Wildfires.git
 $ cd server
 ```
 
+### Install Python Dependencies :
+
+```
+$ pip install -r requirements.txt
+```
+
 ### .env File Config :
 
 - Setup the .env file for MongoDB, Django & Email functionality based on the .env.example file
@@ -62,15 +68,7 @@ $ python wildfirepred.py
 ```
 - The model `model_jlib` is created and ready to use
 
-### Server Setup :
-
-Install python dependencies
-
-```
-$ pip install -r requirements.txt
-```
-
-Run server
+### Run Server :
 
 ```
 $ bash run_server.sh
