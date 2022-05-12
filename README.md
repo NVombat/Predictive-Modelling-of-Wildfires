@@ -1,3 +1,5 @@
+<!-- Format from Aradhya-Tripathi/fire-watch -->
+
 <div align="center">
   <img alt="Forest Care Logo" src="docs/logo.png" height="56" />
 </div>
@@ -54,36 +56,36 @@ Install python dependencies
 $ pip install -r requirements.txt
 ```
 
-#### Application Runthrough
-
-- Home
-![image](docs/home1.png)
-![image](docs/home2.png)
-![image](docs/home3.png)
-
-- About Us
-![image](docs/about.png)
-
-- FAQs
-![image](docs/faq.png)
-
-- Pricing Plans
-![image](docs/pricing.png)
-
-- Contact Us
-![image](docs/contact.png)
-
-- Predicting Wildfires - Data Entry
-![image](docs/predict1.png)
-
-- Predicting Wildfires - Result
-![image](docs/predict2.png)
-
 ### Run Server
 
 ```
 $ bash run_server.sh
 ```
+
+#### Application Runthrough
+
+#### Home
+![image](docs/home1.png)
+![image](docs/home2.png)
+![image](docs/home3.png)
+
+#### About Us
+![image](docs/about.png)
+
+#### FAQs
+![image](docs/faq.png)
+
+#### Pricing Plans
+![image](docs/pricing.png)
+
+#### Contact Us
+![image](docs/contact.png)
+
+#### Predicting Wildfires - Data Entry
+![image](docs/predict1.png)
+
+#### Predicting Wildfires - Result
+![image](docs/predict2.png)
 
 ## 📜 License
 
