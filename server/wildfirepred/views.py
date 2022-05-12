@@ -2,6 +2,7 @@ from django.shortcuts import render
 import datetime as d
 import joblib
 
+from .mailer import send_feedback_mail
 from . import data_entry
 from .errors import (
     UserDoesNotExistError,
@@ -80,6 +81,8 @@ def predict(request):
             data_entry.add_prediction_result(email, data_id, res=float_res)
 
             data_entry.update_dataset(feature_list)
+
+            send_feedback_mail(str_res, email=email, name=name)
 
         except UserDoesNotExistError as udne:
             print("Error:", str(udne))
