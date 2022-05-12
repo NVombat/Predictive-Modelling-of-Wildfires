@@ -6,7 +6,7 @@
 
 <br>
 <p align="center">
-<b>Forest Care is a web application that uses Machine Learning to predict the occurence & confidence of wildfires</b>
+<b>Forest Care is a web application that uses Machine Learning to predict the confidence & occurrence of wildfires</b>
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@
 
 ## 💡 Project Description
 
-Predict the occurence & confidence of wildfires with email notifications
+Predict the occurrence & confidence of wildfires with email notifications
 
 ## 📌 Prerequisites
 
@@ -40,15 +40,29 @@ Predict the occurence & confidence of wildfires with email notifications
 ### Clone The Repository :
 
 ```
-git clone https://github.com/NVombat/Predictive-Modelling-of-Wildfires.git
-cd server
+$ git clone https://github.com/NVombat/Predictive-Modelling-of-Wildfires.git
+$ cd server
 ```
 
 ### .env File Config :
 
 - Setup the .env file for MongoDB, Django & Email functionality based on the .env.example file
 
-### Server
+### ML Config :
+
+- The dataset can be accessed from the `dataset` folder
+```
+$ cd ml/datasets
+$ fire_archive.csv
+```
+- Open the `ml` foler and run `wildfirepred.py`
+```
+$ cd ml/models
+$ python wildfirepred.py
+```
+- The model `model_jlib` is created and ready to use
+
+### Server Setup :
 
 Install python dependencies
 
@@ -56,7 +70,7 @@ Install python dependencies
 $ pip install -r requirements.txt
 ```
 
-### Run Server
+Run server
 
 ```
 $ bash run_server.sh
