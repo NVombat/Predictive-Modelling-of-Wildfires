@@ -6,9 +6,7 @@ load_dotenv()
 
 
 def send_feedback_mail(
-    result: str,
-    email: str = "nv9824@srmist.edu.in",
-    name: str = "Test User"
+    result: str, email: str = "nv9824@srmist.edu.in", name: str = "Test User"
 ) -> None:
     """Sends Result Mail To User
 
@@ -23,8 +21,8 @@ def send_feedback_mail(
     backemail_add = os.getenv("BACKEND_MAIL_ADDR")
     backemail_pwd = os.getenv("BACKEND_MAIL_PWD")
 
-    server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-    server.login(backemail_add,backemail_pwd)
+    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+    server.login(backemail_add, backemail_pwd)
 
     # User mail subject, body and format of the mail - FROM ADMIN TO USER
     subject1 = "Predictive Modelling of Wildfires: Prediction Results"
