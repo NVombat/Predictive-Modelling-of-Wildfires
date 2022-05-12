@@ -13,7 +13,7 @@ echo $var
 
 if [ $var -eq 0 ];
 then
-    echo "$execution All clean!"
+    echo "$execution Server All clean!"
 else
     black server/ --diff
     exit 1
@@ -24,7 +24,7 @@ echo $var
 
 if [ $var -eq 0 ];
 then
-    echo "$execution All clean!"
+    echo "$execution ML All clean!"
 else
     black ml/ --diff
     exit 1
