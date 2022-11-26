@@ -18,18 +18,25 @@ def send_feedback_mail(
     Returns:
         None
     """
-    backemail_add = os.getenv("BACKEND_MAIL_ADDR")
-    backemail_pwd = os.getenv("BACKEND_MAIL_PWD")
+    MAILGUN_EMAIL = os.getenv("MAILGUN_EMAIL")
+    MAILGUN_PWD = os.getenv("MAILGUN_PWD")
 
-    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-    server.login(backemail_add, backemail_pwd)
+    try:
+        server = smtplib.SMTP("smtp.mailgun.org", 587)
+        server.login(MAILGUN_EMAIL, MAILGUN_PWD)
+    except:
+        print("Error Connecting To Mail Server")
 
     # User mail subject, body and format of the mail - FROM ADMIN TO USER
-    subject1 = "Predictive Modelling of Wildfires: Prediction Results"
-    body1 = f"Dear {name} \n\nThank you for using our services! \n\nResult: The probability of a wildfire occurring is {result} % \n\nHope you have a wonderful day! \n\nWarm Regards, \n\nThe Help Team \nWildfire Prediction Team"
-    msg1 = f"Subject: {subject1}\n\n{body1}"
+    subject = "Predictive Modelling of Wildfires: Prediction Results"
+    body = f"Dear {name} \n\nThank you for using our services! \n\nResult: The probability of a wildfire occurring is {result} % \n\nHope you have a wonderful day! \n\nWarm Regards, \n\nThe Help Team \nWildfire Prediction Team"
+    msg = f"Subject: {subject}\n\n{body}"
 
-    server.sendmail(backemail_add, email, msg1)
+    try:
+        server.sendmail(MAILGUN_EMAIL, email, msg)
+    except:
+        print("Error Sending Mail")
+
     server.quit()
 
 
